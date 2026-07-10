@@ -4,8 +4,8 @@
 # 23-Jul-2023
 #
 # Use "pip install -U pyinstaller" to install pyinstaller! What a wonderful tool!!!
-# Use "pyinstaller --clean --distpath . --specpath build --onefile timecalc.py && rm -rf build"
-# to generate timecalc.exe out of timecalc.py and it's dependencies.
+# Use "pyinstaller --clean --distpath . --specpath build --onefile novohours.py && rm -rf build"
+# to generate novohours.exe out of novohours.py and it's dependencies.
 #
 
 import re
@@ -16,7 +16,7 @@ from PySide6.QtUiTools import QUiLoader
 
 import gui.CustomWidgets
 
-class TimeCalculator:
+class NovoHours:
     def __init__(self):
         self.app     = QtWidgets.QApplication(sys.argv)
 
@@ -91,5 +91,5 @@ class TimeCalculator:
 
 
 if __name__ == '__main__':
-    calc = TimeCalculator()
+    calc = NovoHours()
     calc.run()

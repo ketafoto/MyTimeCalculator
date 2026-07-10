@@ -1,0 +1,7 @@
+{
+    // Use a light theme for this project.
+    "workbench.colorTheme": "Default Light Modern",
+
+    // Use the project's Windows virtual environment.
+    "python.defaultInterpreterPath": "${workspaceFolder}\\venv-win\\Scripts\\python.exe"
+}

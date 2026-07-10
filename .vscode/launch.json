@@ -13,10 +13,10 @@
             "justMyCode": true
         },
         {
-            "name": "Python: Calculator",
+            "name": "Python: NovoHours",
             "type": "python",
             "request": "launch",
-            "program": "timecalc.py",
+            "program": "novohours.py",
             "console": "integratedTerminal",
             "justMyCode": true
         }

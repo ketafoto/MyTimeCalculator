@@ -1,0 +1,14 @@
+# pip install -r requirements.txt - to install Python 3rd parties.
+# It is recommended to do it in a virtual environment:
+# Win/PowerShell:
+# - python -m venv venv-win        # !!! one time only - to create the venv !!!
+# - .\venv-win\Scripts\Activate.ps1
+# - pip install -r requirements.txt
+#
+# For an exact, reproducible install use requirements-lock.txt instead.
+
+# Runtime: Qt for Python (the GUI toolkit).
+PySide6
+
+# Build: bundles novohours.py into a standalone novohours.exe (see README.md).
+pyinstaller
