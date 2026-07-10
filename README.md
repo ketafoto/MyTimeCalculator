@@ -22,9 +22,24 @@ Ready-built binaries are attached to each [GitHub release](../../releases).
 To build `novohours.exe` yourself (inside the activated venv):
 
 ```powershell
-pyinstaller --clean --distpath . --specpath build --onefile novohours.py
-Remove-Item -Recurse -Force build
+pyinstaller --clean --distpath . --onefile --windowed --icon "gui/novohours.ico" --add-data "gui;gui" novohours.py
+Remove-Item -Recurse -Force build, novohours.spec
 ```
+
+`--add-data "gui;gui"` bundles the `gui/` folder (the `.ui` file and
+`novohours.ico`) into the exe, and `--icon "gui/novohours.ico"` embeds the icon
+into the executable itself, so the result is a single self-contained
+`novohours.exe` — with the right icon in Explorer — that you can run from anywhere.
+
+> **Tip:** if `pyinstaller` fails with *"Unable to create process using ..."*,
+> the venv's launcher scripts point at a stale Python path (this happens when a
+> `venv-win` folder is copied between projects rather than freshly created).
+> Recreate the venv, or just call PyInstaller through the interpreter, which
+> sidesteps the launcher entirely:
+>
+> ```powershell
+> python -m PyInstaller --clean --distpath . --onefile --windowed --icon "gui/novohours.ico" --add-data "gui;gui" novohours.py
+> ```
 
 ## License
 

@@ -4,25 +4,38 @@
 # 23-Jul-2023
 #
 # Use "pip install -U pyinstaller" to install pyinstaller! What a wonderful tool!!!
-# Use "pyinstaller --clean --distpath . --specpath build --onefile novohours.py && rm -rf build"
-# to generate novohours.exe out of novohours.py and it's dependencies.
+# Use:
+#   pyinstaller --clean --distpath . --onefile --windowed --icon "gui/novohours.ico" --add-data "gui;gui" novohours.py && rm -rf build novohours.spec
+# to generate a self-contained novohours.exe out of novohours.py and it's
+# dependencies. --add-data bundles the gui/ folder (the .ui and the .ico) into
+# the exe, and --icon embeds the icon into the executable itself.
 #
 
+import os
 import re
 import sys
 
 from PySide6 import QtWidgets
+from PySide6.QtGui import QIcon
 from PySide6.QtUiTools import QUiLoader
 
 import gui.CustomWidgets
 
+def resource_path(rel):
+    # Resolve a bundled resource both when run from source and when frozen by
+    # PyInstaller (which unpacks --add-data files into sys._MEIPASS).
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, rel)
+
 class NovoHours:
     def __init__(self):
         self.app     = QtWidgets.QApplication(sys.argv)
+        self.app.setWindowIcon(QIcon(resource_path("gui/novohours.ico")))
 
         loader       = QUiLoader()
         loader.registerCustomWidget(gui.CustomWidgets.MyQTextEdit)
-        self.window  = loader.load("./gui/MainWindow.ui", None)
+        self.window  = loader.load(resource_path("gui/MainWindow.ui"), None)
+        self.window.setWindowIcon(QIcon(resource_path("gui/novohours.ico")))
 
         wnd = self.window
         wnd.btnPlus.clicked.connect(self.plus)
